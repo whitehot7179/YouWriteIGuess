@@ -6,8 +6,11 @@
 	<div id="card_wrapper">
 	<div id="countdown" style="display:none"><span id="countdown_span">準備倒數</span></div>
 	<div id="setting">
-	<div id="setting_box">
-		<h1 style="margin-top:0">傳情畫意</h1>
+		<div id="setting_box">
+		<div >
+		<h1 style="margin:0 auto;margin-top:0;margin-bottom:20px;font-size: 250%">傳情畫意</h1>
+		</div>
+		<div style="margin:0 auto;text-align:center;">
 		<span>玩家人數：</span>
 		<select id="player_num">
 		  <option value="1">1</option>
@@ -28,6 +31,7 @@
 		  <option value="25">25</option>
 		  <option value="30">30</option>
 		</select><span> 秒</span>
+		</div>
 	</div>	
 	</div>
 	<div id="info">
@@ -103,6 +107,8 @@
 			var countdown_display = document.getElementById("countdown").style.display;
 			var countdown_now = countdown_num;
 			var snd = new Audio("tik.mp3");//buffers automatically when created 
+			snd.volume = 0.5;
+			var snd_start = new Audio("startCountdown.mp3");
 			var snd_10 = new Audio("last10.mp3");
 			var snd_5 = new Audio("5.mp3");
 			var snd_4 = new Audio("4.mp3");
@@ -111,22 +117,27 @@
 			var snd_1 = new Audio("1.mp3");
 			var timesup = new Audio("timesup.mp3");
 			snd.play();
+			snd_start.play();
 			var interval = setInterval(function(){ 
-				if(countdown_now == 0){
-					clearInterval(interval);
-					snd.pause();
-					snd.currentTime=0;
-				}
-				if(countdown_now == 10){snd_10.play();}
+				if(countdown_now == 10 && countdown_num != 10){snd_10.play();}
 				if(countdown_now == 5){snd_5.play();}
 				if(countdown_now == 4){snd_4.play();}
 				if(countdown_now == 3){snd_3.play();}
 				if(countdown_now == 2){snd_2.play();}
 				if(countdown_now == 1){snd_1.play();}
 				if(countdown_now == 0){timesup.play();}
-				document.getElementById("countdown_span").innerHTML = countdown_now;
-				countdown_now --; 
-				}, 1000);
+				if(countdown_now == 0){ //數到0
+					clearInterval(interval);
+					snd.pause();
+					snd.currentTime=0;
+					document.getElementById("countdown_span").innerHTML = "準備倒數";
+				}else{
+					document.getElementById("countdown_span").innerHTML = countdown_now;
+					countdown_now --;
+				}
+				//語音撥放
+				
+			}, 1000);
 		}
 	</script>
 </body>
@@ -134,7 +145,7 @@
 <style>
 	#card_wrapper{
 		width: 80%;
-		height:70%;
+		height:80vh;
 		margin:0 auto;
 		margin-top:10vh;
 		position:relative;
@@ -149,7 +160,7 @@
 		background-color: rgb(237, 223, 216);
 	}
 	#countdown span{
-		font-size: 500%;
+		font-size: 1000%;
 		color: rgb(148, 24, 24);
 		display: block;
 		margin:0 auto;
@@ -158,7 +169,7 @@
 		width:100%;
 		height:100%;
 		z-index:3;
-		font-size: 150%;
+		font-size: 200%;
 		position:absolute;
 		display: flex;
 		align-items: center;
@@ -168,8 +179,10 @@
 		margin:0 auto;
 	}
 	#setting_box select{
-		width: 50px;
-		height: 25px;
+		width: 30%;
+		height: 40px;
+		font-size:50%;
+		padding-top:5px;
 	}
 	#info{
 		width:100%;
@@ -185,7 +198,7 @@
 		text-align:center;
 	}
 	#info span {
-		font-size: 350%;
+		font-size: 700%;
 	}
 	#card{
 		height: 80%;
@@ -196,25 +209,26 @@
 	}
 	#GameWord{
 		width: 100%;
-		font-size: 500%;
+		font-size: 700%;
 		text-align:center;
 	}
 	#ReloadCardButton{
 		width: 100%;
 		height: 20%;
-		font-size: 120%;
+		font-size: 250%;
 		border: none;
 		background-color: rgb(210, 210, 210);
 	}
 	#NextButton{
-		width: 15vh;
-		height: 15vh;
-		font-size:120%;
+		width: 30vh;
+		height: 30vh;
+		font-size:250%;
+		z-index:5;
 		border:none;
 		border-radius:100%;
-		float:right;
-		margin-top: 3vh; 
-		margin-right: 10vw;
-		background-color: rgb(230, 230, 230);
+		position: fixed;
+		bottom: 5vh; 
+		right: 5vh;
+		background-color: rgb(2242, 190, 58);
 	}
 </style>
