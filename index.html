@@ -26,10 +26,10 @@
 		<span>倒數時間：</span>
 		<select id="countdown_num">
 		  <option value="10">10</option>
-		  <option value="15">15</option>
 		  <option value="20">20</option>
-		  <option value="25">25</option>
 		  <option value="30">30</option>
+		  <option value="40">40</option>
+		  <option value="50">50</option>
 		</select><span> 秒</span>
 		</div>
 	</div>	
@@ -107,7 +107,7 @@
 		function onCountDownButton(){
 			var countdown_display = document.getElementById("countdown").style.display;
 			var countdown_now = countdown_num;
-			var snd = new Audio("tik.mp3"); snd.volume = 0.2; 
+			var snd = new Audio("tik.mp3"); snd.volume = 0.1; 
 			var snd_start = new Audio("startCountdown.mp3"); snd_start.volume = 0.5;
 			var snd_10 = new Audio("last10.mp3"); snd_10.volume = 0.5;
 			var snd_5 = new Audio("5.mp3"); 
@@ -193,6 +193,7 @@
 		border-radius:10px;
 		border: 5px solid;
 		border-color: rgb(87, 150, 74);
+		background-color: white;
 	}
 	#info{
 		width:100%;
@@ -242,5 +243,6 @@
 		background-color: rgb(2242, 190, 58);
 	}
 	body{
+		font-family: Microsoft JhengHei;
 	}
 </style>
