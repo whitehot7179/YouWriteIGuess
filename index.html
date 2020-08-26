@@ -108,6 +108,7 @@
 			var countdown_display = document.getElementById("countdown").style.display;
 			var countdown_now = countdown_num;
 			var snd = new Audio("tik.mp3"); snd.volume = 0.1; 
+			var snd_misson = new Audio("misson_on.mp3"); snd_misson.volume = 0.2; 
 			var snd_start = new Audio("startCountdown.mp3"); snd_start.volume = 0.5;
 			var snd_10 = new Audio("last10.mp3"); snd_10.volume = 0.5;
 			var snd_5 = new Audio("5.mp3"); 
@@ -117,6 +118,7 @@
 			var snd_1 = new Audio("1.mp3"); snd_1.volume = 0.5;
 			var timesup = new Audio("timesup.mp3");
 			snd.play();
+			snd_misson.play();
 			snd_start.play();
 			document.getElementById("countdown_span").innerHTML = countdown_now;
 			document.getElementById("countdown_span").style.fontSize = "2500%";
@@ -132,6 +134,8 @@
 				if(countdown_now == 0){ //數到0
 					clearInterval(interval);
 					snd.pause();
+					snd_misson.pause();
+					snd_misson.currentTime=0;
 					snd.currentTime=0;
 					document.getElementById("countdown_span").innerHTML = "準備倒數";
 					document.getElementById("countdown_span").style.fontSize = "1000%";
